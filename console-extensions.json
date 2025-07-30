@@ -13,29 +13,42 @@
   {
     "type": "console.page/route",
     "flags": {
-      "required": ["CAMEL_APP_FLAG"]
+      "required": [
+        "CAMEL_APP_FLAG"
+      ]
     },
     "properties": {
       "exact": false,
       "path": "/camel/app/ns/:ns/name/:name",
-      "component": { "$codeRef": "CamelApp" }
+      "component": {
+        "$codeRef": "CamelApp"
+      }
     }
   },
   {
     "type": "console.page/route",
     "flags": {
-      "required": ["CAMEL_APP_FLAG"]
+      "required": [
+        "CAMEL_APP_FLAG"
+      ]
     },
     "properties": {
       "exact": true,
-      "path": ["/camel/ns/:ns", "/camel/all-namespaces"],
-      "component": { "$codeRef": "CamelAppList" }
+      "path": [
+        "/camel/ns/:ns",
+        "/camel/all-namespaces"
+      ],
+      "component": {
+        "$codeRef": "CamelAppList"
+      }
     }
   },
   {
     "type": "console.navigation/href",
     "flags": {
-      "required": ["CAMEL_APP_FLAG"]
+      "required": [
+        "CAMEL_APP_FLAG"
+      ]
     },
     "properties": {
       "id": "camel",
@@ -43,6 +56,22 @@
       "href": "/camel",
       "perspective": "dev",
       "section": "resources",
+      "namespaced": true
+    }
+  },
+  {
+    "type": "console.navigation/href",
+    "flags": {
+      "required": [
+        "CAMEL_APP_FLAG"
+      ]
+    },
+    "properties": {
+      "id": "camel",
+      "name": "%plugin__camel-openshift-console-plugin~Camel%",
+      "href": "/camel",
+      "perspective": "admin",
+      "section": "workloads",
       "namespaced": true
     }
   }

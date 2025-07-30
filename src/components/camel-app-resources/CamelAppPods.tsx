@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, CardBody, CardTitle, Spinner, TextContent } from '@patternfly/react-core';
+import { Card, CardBody, CardTitle, Spinner, Content } from '@patternfly/react-core';
 import { K8sResourceKind, ResourceLink } from '@openshift-console/dynamic-plugin-sdk';
 import { podGVK } from '../../const';
 import Status from '@openshift-console/dynamic-plugin-sdk/lib/app/components/status/Status';
@@ -65,49 +65,49 @@ const CamelAppPods: React.FC<CamelAppPodsProps> = ({ obj: camelInt }) => {
               <li key={i} className="list-group-item container-fluid">
                 <div className="row">
                   <span className="col-xs-5">
-                    <TextContent>
+                    <Content>
                       <ResourceLink
                         groupVersionKind={podGVK}
                         name={resource.name}
                         namespace={camelInt.metadata.namespace}
                       />
-                    </TextContent>
+                    </Content>
                   </span>
                   <span className="col-xs-3">
-                    <TextContent>
+                    <Content>
                       <Status title={resource.status || 'N/A'} status={resource.status} />
-                    </TextContent>
+                    </Content>
                   </span>
                   {resource.hawtioEnabled ? (
                     <>
                       <span className="col-xs-2 text-right">
-                        <TextContent>
+                        <Content>
                           <a
                             href={`/k8s/ns/${camelInt.metadata.namespace}/pods/${resource.name}/logs`}
                           >
                             {t('View Logs')}
                           </a>
-                        </TextContent>
+                        </Content>
                       </span>
                       <span className="col-xs-2 text-right">
-                        <TextContent>
+                        <Content>
                           <a
                             href={`/k8s/ns/${camelInt.metadata.namespace}/pods/${resource.name}/hawtio`}
                           >
                             {t('View Hawtio')}
                           </a>
-                        </TextContent>
+                        </Content>
                       </span>
                     </>
                   ) : (
                     <span className="col-xs-4 text-right">
-                      <TextContent>
+                      <Content>
                         <a
                           href={`/k8s/ns/${camelInt.metadata.namespace}/pods/${resource.name}/logs`}
                         >
                           {t('View Logs')}
                         </a>
-                      </TextContent>
+                      </Content>
                     </span>
                   )}
                 </div>

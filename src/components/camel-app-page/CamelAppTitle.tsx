@@ -2,8 +2,9 @@ import * as React from 'react';
 import { Link } from 'react-router-dom-v5-compat';
 import { Breadcrumb, BreadcrumbItem } from '@patternfly/react-core';
 import { useTranslation } from 'react-i18next';
-import { ALL_NAMESPACES_KEY } from '../../const';
+import { ALL_NAMESPACES_KEY, camelAppGVK } from '../../const';
 import { ResourceStatus, useActiveNamespace } from '@openshift-console/dynamic-plugin-sdk';
+import { PageHeader } from '@patternfly/react-component-groups';
 import { CamelAppKind } from '../../types';
 import Status from '@openshift-console/dynamic-plugin-sdk/lib/app/components/status/Status';
 import CamelImage from '@images/camel.svg';
@@ -30,27 +31,33 @@ const CamelAppTitle: React.FC<CamelAppTitleProps> = ({ name, obj }) => {
 
   return (
     <>
-      <div className="co-m-nav-title co-m-nav-title--detail">
-        <div>
-          <Breadcrumb className="pf-v6-c-breadcrumb co-breadcrumb">
+      <PageHeader
+        breadcrumbs={
+          <Breadcrumb>
             <BreadcrumbItem>
               <Link to={getUrlList(activeNamespace)}>{t('Camel')}</Link>
             </BreadcrumbItem>
             <BreadcrumbItem>{t('Camel Application')}</BreadcrumbItem>
           </Breadcrumb>
-        </div>
-        <span className="co-m-pane__heading">
-          <h1 className="co-resource-item__resource-name">
-            <span className="co-m-resource-icon co-m-resource-icon--lg co-m-resource-camel--lg">
-              <img src={CamelImage} alt="Camel" className="camel-icon--lg" />
+        }
+        title={
+          <div className="co-m-pane__heading co-resource-item">
+            <span className="co-resource-item">
+              <span className="pf-v6-u-screen-reader">C</span>
+              <span
+                className="co-m-resource-icon co-m-resource-secret co-m-resource-camel--lg co-m-resource-icon--lg"
+                title={camelAppGVK.kind + '.' + camelAppGVK.group}
+              >
+                <img src={CamelImage} alt="Camel" className="camel-icon--lg" />
+              </span>
+              <span className="co-resource-item__resource-name">{name}</span>
             </span>
-            {name}
             <ResourceStatus>
               <Status status={obj?.status?.phase} />
             </ResourceStatus>
-          </h1>
-        </span>
-      </div>
+          </div>
+        }
+      ></PageHeader>
     </>
   );
 };

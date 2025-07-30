@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, CardBody, CardTitle, TextContent } from '@patternfly/react-core';
+import { Card, CardBody, CardTitle, Content } from '@patternfly/react-core';
 import {
   K8sGroupVersionKind,
   K8sResourceKind,
@@ -34,13 +34,13 @@ const CamelAppOwnerResource: React.FC<CamelAppOwnerResourceProps> = ({
                 />
               </span>
               <span className="col-xs-4 text-right">
-                <TextContent>
+                <Content>
                   <Link
                     to={`/dev-monitoring/ns/${camelAppOwner.metadata.namespace}?dashboard=dashboard-k8s-resources-workload&workload=${camelAppOwner.metadata.name}&type=ALL_OPTIONS_KEY`}
                   >
                     {t('View dashboards')}
                   </Link>
-                </TextContent>
+                </Content>
               </span>
             </div>
           </li>
