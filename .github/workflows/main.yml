@@ -37,7 +37,7 @@ jobs:
       - name: Log in to registry
         if:  github.ref == 'refs/heads/main'
         id: login-registry
-        uses: redhat-actions/podman-login@v1
+        uses: redhat-actions/podman-login@v2
         with:
           registry: quay.io
           username: ${{ secrets.QUAY_USERNAME }}
