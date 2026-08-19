@@ -64,12 +64,29 @@ jobs:
         if:  github.ref == 'refs/heads/main'
         uses: oras-project/setup-oras@v2
 
-      - name: Attach SBOM to container image
+      - name: Attach application SBOM to container image
         if:  github.ref == 'refs/heads/main'
         shell: bash
         run: |
           VERSION=$(node -p "require('./package.json').version")
           oras attach --distribution-spec v1.1-referrers-api \
+            --annotation "org.cyclonedx.sbom.scope=application" \
             quay.io/camel-tooling/camel-dashboard-console:${VERSION} \
             --artifact-type application/vnd.cyclonedx+json \
             sbom.json:application/vnd.cyclonedx+json
+
+      - name: Install Syft
+        if:  github.ref == 'refs/heads/main'
+        uses: anchore/sbom-action/download-syft@v0
+
+      - name: Generate and attach image SBOM
+        if:  github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          syft quay.io/camel-tooling/camel-dashboard-console:${VERSION} -o cyclonedx-json=image-sbom.json
+          oras attach --distribution-spec v1.1-referrers-api \
+            --annotation "org.cyclonedx.sbom.scope=container" \
+            quay.io/camel-tooling/camel-dashboard-console:${VERSION} \
+            --artifact-type application/vnd.cyclonedx+json \
+            image-sbom.json:application/vnd.cyclonedx+json
