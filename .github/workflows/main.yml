@@ -64,11 +64,11 @@ jobs:
         if:  github.ref == 'refs/heads/main'
         uses: oras-project/setup-oras@v2
 
-      - name: Push SBOM as OCI artifact
+      - name: Attach SBOM to container image
         if:  github.ref == 'refs/heads/main'
         shell: bash
         run: |
           VERSION=$(node -p "require('./package.json').version")
-          oras push quay.io/camel-tooling/camel-dashboard-console:${VERSION}-sbom \
+          oras attach quay.io/camel-tooling/camel-dashboard-console:${VERSION} \
             --artifact-type application/vnd.cyclonedx+json \
             sbom.json:application/vnd.cyclonedx+json
