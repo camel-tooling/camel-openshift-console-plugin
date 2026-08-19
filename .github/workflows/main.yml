@@ -55,3 +55,20 @@ jobs:
         run: |
           make CUSTOM_PLUGIN_IMAGE=quay.io/camel-tooling/camel-dashboard-console push
           make CUSTOM_PLUGIN_IMAGE=quay.io/camel-tooling/camel-dashboard-console CUSTOM_PLUGIN_VERSION=latest push
+
+      - name: Generate SBOM
+        if:  github.ref == 'refs/heads/main'
+        run: npx @cyclonedx/cyclonedx-npm --output-format json --output-file sbom.json
+
+      - name: Install ORAS
+        if:  github.ref == 'refs/heads/main'
+        uses: oras-project/setup-oras@v2
+
+      - name: Push SBOM as OCI artifact
+        if:  github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          oras push quay.io/camel-tooling/camel-dashboard-console:${VERSION}-sbom \
+            --artifact-type application/vnd.cyclonedx+json \
+            sbom.json:application/vnd.cyclonedx+json
