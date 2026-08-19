@@ -58,7 +58,7 @@ jobs:
 
       - name: Generate SBOM
         if:  github.ref == 'refs/heads/main'
-        run: npx @cyclonedx/cyclonedx-npm --output-format json --output-file sbom.json
+        run: npx @cyclonedx/cdxgen -o sbom.json -t yarn
 
       - name: Install ORAS
         if:  github.ref == 'refs/heads/main'
