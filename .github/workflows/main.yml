@@ -69,6 +69,7 @@ jobs:
         shell: bash
         run: |
           VERSION=$(node -p "require('./package.json').version")
-          oras attach quay.io/camel-tooling/camel-dashboard-console:${VERSION} \
+          oras attach --distribution-spec v1.1-referrers-api \
+            quay.io/camel-tooling/camel-dashboard-console:${VERSION} \
             --artifact-type application/vnd.cyclonedx+json \
             sbom.json:application/vnd.cyclonedx+json
