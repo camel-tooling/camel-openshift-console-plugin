@@ -1,10 +1,10 @@
 <h1 align="center">
-  <a href="https://camel-tooling.github.io/camel-dashboard/docs/console/">Camel Dashboard Console</a>
+  <a href="https://camel-tooling.github.io/camel-dashboard/docs/installation-guide/advanced/console/">Camel Dashboard Console</a>
 </h1>
 
 <p align=center>
   <a href="https://github.com/camel-tooling/camel-dashboard-console/blob/main/LICENSE"><img src="https://img.shields.io/github/license/camel-tooling/camel-dashboard-console?color=104d92&style=for-the-badge" alt="License"/></a>
-  <a href="https://camel-tooling.github.io/camel-dashboard/docs/console/"><img src="https://img.shields.io/badge/Documentation-Camel_Dashboard_Console-white?color=cf7428&style=for-the-badge" alt="Visit"/></a>
+  <a href="https://camel-tooling.github.io/camel-dashboard/docs/installation-guide/advanced/console/"><img src="https://img.shields.io/badge/Documentation-Camel_Dashboard_Console-white?color=cf7428&style=for-the-badge" alt="Visit"/></a>
 </p><br/>
 
 <h2 align="center">The UI for <a href="https://github.com/camel-tooling/camel-dashboard">Camel Dashboard</a> on Openshift</h2>
@@ -25,7 +25,7 @@ It can also leverage the [Hawtio Online OpenShift Console Plugin](https://github
 
 # Installation
 
-To install the Camel Dashboard Console please see the [installation documentation](https://camel-tooling.github.io/camel-dashboard/docs/console/).
+To install the Camel Dashboard Console please see the [installation documentation](https://camel-tooling.github.io/camel-dashboard/docs/installation-guide/advanced/console/).
 
 # Development
 
